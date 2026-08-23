@@ -389,7 +389,7 @@
   <header>
     <p class="eyebrow">PMLB · Sample Tracking</p>
     <h1>Sample Label Generator</h1>
-    <p class="sub">Build a Code128 sample ID: <strong>S</strong> + 5‑digit number + berth code + auto number + status letters.</p>
+    <p class="sub">Build a Code128 sample ID: <strong>S</strong> + 5‑digit number + berth code + auto number + product type.</p>
   </header>
 
   <button class="btn-scan" id="scanBtn" type="button">
@@ -433,7 +433,7 @@
   </div>
 
   <div class="panel">
-    <p class="panel-title"><span class="idx">04</span> Status letters</p>
+    <p class="panel-title"><span class="idx">04</span> Product Type</p>
     <div class="chip-row" id="suffixRow"></div>
   </div>
 
@@ -469,7 +469,7 @@
     { title: "E/F berth", codes: ["501", "510", "780", "563"] },
     { title: "G/H berth", codes: ["809", "897"] },
   ];
-  const SUFFIXES = ["AF", "NF", "BL", "YF", "JF"];
+  const SUFFIXES = ["AF", "NF", "BL", "YF", "JF", "BF"];
 
   const state = { num: "", berth: null, autoNum: "", suffix: null };
 
@@ -718,7 +718,7 @@
       if (state.num.length !== 5) parts.push('sample number');
       if (!state.berth) parts.push('berth code');
       if (state.autoNum.length !== 2) parts.push('auto number');
-      if (!state.suffix) parts.push('status letters');
+      if (!state.suffix) parts.push('product type');
       codeText.textContent = 'S · ' + (state.num.padEnd(5,'·')) + ' · ' + (state.berth || '···') + ' · ' + (state.autoNum.padEnd(2,'·')) + ' · ' + (state.suffix || '··');
       codeHint.textContent = 'Missing: ' + parts.join(', ');
       barcodeSvg.style.display = 'none';
